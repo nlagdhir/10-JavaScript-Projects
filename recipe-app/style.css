@@ -90,6 +90,16 @@ header button {
 
 .fav-meals li span {
     font-size: 0.8rem;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 75px;
+}
+
+.fav-meals li span:hover {
+    white-space: normal;
+    overflow: auto;
 }
 
 .meals{

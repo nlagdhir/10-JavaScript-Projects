@@ -1,5 +1,7 @@
 const meals = document.querySelector('#meals');
 const favouriteContainer = document.querySelector('#fav-meals')
+const searchBtn = document.querySelector('#search');
+const searchTerm = document.querySelector('#search-term')
 
 const  getRandomMeal = async () => {
     const respData = await (await fetch('https://www.themealdb.com/api/json/v1/1/random.php')).json();
@@ -15,7 +17,9 @@ const getMealById = async (id) => {
 }
 
 const getMealBySearch = async (term) => {
-    const meals = await fetch(`www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
+    const respData = await (await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)).json();
+    const meals = respData.meals;
+    return meals;
 }
 
 const addMeal = (mealData, random = false) =>  {
@@ -28,11 +32,11 @@ const addMeal = (mealData, random = false) =>  {
     </div>
     <div class="meal-body">
         <h4>${mealData.strMeal}</h4>
-        <button class="fav-btn" id="fav-btn"><i class="fas fa-heart"></i></button>
+        <button class="fav-btn"><i class="fas fa-heart"></i></button>
     </div>`;
     meals.appendChild(meal);
 
-const favBtn = document.querySelector('#fav-btn');
+const favBtn = meal.querySelector(".meal-body .fav-btn");
 favBtn.addEventListener('click', event => {
     if(favBtn.classList.contains('active')){
         removeMealFromLS(mealData.idMeal);
@@ -75,11 +79,11 @@ const fetchFavMeals = async () => {
         meal = await getMealById(mealId);
         addMealFav(meal);
     }
-    console.log(meals);
 }
 
 const addMealFav = (mealData) =>  {
     const FavMeal = document.createElement('li');
+    
     FavMeal.innerHTML = `
     <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
     <span>${mealData.strMeal}</span>
@@ -94,6 +98,18 @@ const addMealFav = (mealData) =>  {
     })
     favouriteContainer.appendChild(FavMeal);
 }
+
+searchBtn.addEventListener('click',async () => {
+    meals.innerHTML = '';
+    const search = searchTerm.value;
+    
+    const mealsData = await getMealBySearch(search);
+    if(mealsData){
+        mealsData.forEach((meal) => {
+            addMeal(meal);
+        });
+    }
+})
 
 getRandomMeal();
 fetchFavMeals();
