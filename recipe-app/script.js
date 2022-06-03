@@ -106,7 +106,7 @@ searchBtn.addEventListener('click',async () => {
     const mealsData = await getMealBySearch(search);
     if(mealsData){
         mealsData.forEach((meal) => {
-            addMeal(meal);
+            addMeal(meal);  
         });
     }
 })
