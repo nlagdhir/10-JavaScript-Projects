@@ -2,6 +2,9 @@ const meals = document.querySelector('#meals');
 const favouriteContainer = document.querySelector('#fav-meals')
 const searchBtn = document.querySelector('#search');
 const searchTerm = document.querySelector('#search-term')
+const mealPopup = document.querySelector('#meal-popup')
+const popupCloseBtn = document.querySelector('#close-popup')
+const mealInfoEl = document.querySelector('#meal-info')
 
 const  getRandomMeal = async () => {
     const respData = await (await fetch('https://www.themealdb.com/api/json/v1/1/random.php')).json();
@@ -46,6 +49,10 @@ favBtn.addEventListener('click', event => {
         favBtn.classList.add('active');
     }
     fetchFavMeals();
+})
+
+meal.addEventListener('click',() => {
+    showMeanInfo(mealData);
 })
 
 }
@@ -96,7 +103,47 @@ const addMealFav = (mealData) =>  {
 
         fetchFavMeals();
     })
+
+    FavMeal.addEventListener('click', () => {
+        showMeanInfo(mealData);
+    })
+
     favouriteContainer.appendChild(FavMeal);
+}
+
+const showMeanInfo = (mealData) => {
+
+    mealInfoEl.innerHTML = '';
+
+    const mealEl = document.createElement('div');
+
+
+    const ingredients = [];
+    for(let i=1; i<=20; i++){
+        if(mealData['strIngredient'+i]){
+            ingredients.push(`${mealData['strIngredient'+i]} - ${mealData['strMeasure'+i]} `)
+        }else{
+            break;
+        }
+    }
+
+    mealEl.innerHTML = `<h1>${mealData.strMeal}</h1>
+    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" />
+
+    <p>
+    ${mealData.strInstructions}
+    </p>
+    <ul>
+        <h3>Ingredients : </h3>
+        ${ingredients.map(ing => `
+            <li>${ing}</li>
+        `).join("")}
+    </ul>`;
+
+    mealInfoEl.appendChild(mealEl);
+
+    mealPopup.classList.remove('hidden');
+
 }
 
 searchBtn.addEventListener('click',async () => {
@@ -109,6 +156,10 @@ searchBtn.addEventListener('click',async () => {
             addMeal(meal);  
         });
     }
+})
+
+popupCloseBtn.addEventListener('click',() =>{
+    mealPopup.classList.add('hidden');
 })
 
 getRandomMeal();
