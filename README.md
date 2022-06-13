@@ -6,4 +6,5 @@ I am learning JavaScript and creating some basic apps, I am aiming to post 10 Ja
 - 02 - Quiz App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/quiz-app/index.html)
 - 03 - Recipe App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/recipe-app/index.html)
 - 04 - Notes App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/notes-app/index.html)
-- 04 - Todo App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/todo-app/index.html)
+- 05 - Todo App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/todo-app/index.html)
+- 06 - Movie App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/movie-app/index.html)
