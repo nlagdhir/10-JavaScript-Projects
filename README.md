@@ -8,3 +8,4 @@ I am learning JavaScript and creating some basic apps, I am aiming to post 10 Ja
 - 04 - Notes App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/notes-app/index.html)
 - 05 - Todo App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/todo-app/index.html)
 - 06 - Movie App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/movie-app/index.html)
+- 07 - Github Profile App - [Link](https://nlagdhir.github.io/10-JavaScript-Projects/github-profiles/index.html)
